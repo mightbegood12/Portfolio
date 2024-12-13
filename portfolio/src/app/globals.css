@@ -20,6 +20,15 @@ body {
   color: var(--foreground);
   background: var(--background);
 }
+body::-webkit-scrollbar {
+  background-color: #000000;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+}
+
+body::-webkit-scrollbar-thumb {
+  background: #e40000dc;
+}
 
 .content {
   position: relative;
