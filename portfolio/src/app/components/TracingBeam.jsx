@@ -20,16 +20,16 @@ export const TracingBeam = ({ children, className }) => {
   }, []);
 
   const y1 = useSpring(
-    useTransform(scrollYProgress, [0, 0.8], [50, svgHeight]),
+    useTransform(scrollYProgress, [0, 0.8], [0, svgHeight]),
     {
-      stiffness: 500,
+      stiffness: 200,
       damping: 90,
     }
   );
   const y2 = useSpring(
-    useTransform(scrollYProgress, [0, 1], [50, svgHeight - 200]),
+    useTransform(scrollYProgress, [0, 1], [0, svgHeight - 200]),
     {
-      stiffness: 500,
+      stiffness: 300,
       damping: 90,
     }
   );
@@ -37,9 +37,9 @@ export const TracingBeam = ({ children, className }) => {
   return (
     <motion.div
       ref={ref}
-      className={cn("relative w-full  mx-auto h-full", className)}
+      className={cn("relative w-full mx-auto h-full ", className)}
     >
-      <div className="absolute top-3">
+      <div className="absolute top-3 z-[80]">
         <motion.div
           transition={{
             duration: 0.2,
@@ -49,49 +49,35 @@ export const TracingBeam = ({ children, className }) => {
             boxShadow:
               scrollYProgress.get() > 0
                 ? "none"
-                : "rgba(200, 0, 0, 0.24) 0px 3px 8px",
+                : "rgba(200, 0, 0, 200) 0px 3px 8px",
           }}
-          className="ml-[27px] h-4 w-4 rounded-full border border-netural-200 shadow-sm flex items-center justify-center"
-        >
-          <motion.div
-            transition={{
-              duration: 0.2,
-              delay: 0.5,
-            }}
-            animate={{
-              backgroundColor:
-                scrollYProgress.get() > 0 ? "white" : "rgb(200,0,0,75)",
-              borderColor:
-                scrollYProgress.get() > 0 ? "white" : "rgb(180,0,0,75)",
-            }}
-            className="h-2 w-2  rounded-full border border-red-300 bg-red-400"
-          />
-        </motion.div>
+          className="ml-[27px] h-4 w-4 rounded-full border bg-red-600 border-red-600 shadow-sm flex items-center justify-center"
+        ></motion.div>
         <svg
           viewBox={`0 0 20 ${svgHeight}`}
-          width="20"
-          // Set the SVG height
+          width="100%"
           height={svgHeight}
-          className=" ml-4 block"
+          className="inline-flex ml-1 w-screen"
           aria-hidden="true"
         >
           <motion.path
-            d={`M 1 0V -36 l 18 24 V ${svgHeight * 0.8} l -18 24V ${svgHeight}`}
+            d={`M -727 -727 V 720 L 740 875 V 1400 L -727 1555 V 2120 L 727 2275 V 2806`}
             fill="none"
             stroke="#ff0000"
             strokeOpacity="0.16"
             transition={{
-              duration: 10,
+              duration: 6,
             }}
           ></motion.path>
           <motion.path
-            d={`M 1 0V -36 l 18 24 V ${svgHeight * 0.8} l -18 24V ${svgHeight}`}
+            d={`M -727 -727 V 720 L 740 875 V 1400 L -727 1555 V 2120 L 727 2275 V 2806`}
+            // d={`M 2 0V -36 l 18 24V ${svgHeight * 0.8} l -18 24V ${svgHeight}`}
             fill="none"
             stroke="url(#gradient)"
-            strokeWidth="1.25"
+            strokeWidth="2"
             className="motion-reduce:hidden"
             transition={{
-              duration: 10,
+              duration: 4,
             }}
           ></motion.path>
           <defs>
@@ -107,8 +93,8 @@ export const TracingBeam = ({ children, className }) => {
             >
               <stop stopColor="#ff0000" stopOpacity="0"></stop>
               <stop stopColor="#ff0000e2"></stop>
-              <stop offset="0.325" stopColor="#ff0000b3"></stop>
-              <stop offset="1" stopColor="#AE48FF" stopOpacity="0"></stop>
+              <stop offset="0.325" stopColor="#a30303"></stop>
+              <stop offset="1" stopColor="#ff0000" stopOpacity="0"></stop>
             </motion.linearGradient>
           </defs>
         </svg>

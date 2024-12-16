@@ -17,7 +17,7 @@ const Navbar = () => {
     const observerOptions = {
       root: null,
       rootMargin: "0px",
-      threshold: 0.6, // More flexible threshold for detecting active section
+      threshold: 0.6,
     };
 
     const observerCallback = (entries) => {
@@ -47,6 +47,9 @@ const Navbar = () => {
           <a
             key={tab.id}
             href={`#${tab.id}`}
+            onClick={() => {
+              setActiveTab(tab.id);
+            }}
             className={`${
               activeTab === tab.id
                 ? "font-bold text-opacity-100"
@@ -60,9 +63,8 @@ const Navbar = () => {
                 className="absolute inset-0 z-10 bg-white mix-blend-difference"
                 style={{ borderRadius: 9999 }}
                 transition={{
-                  x: { type: "spring", stiffness: 100 },
-                  duration: 0.6,
-                  delay: 0.2,
+                  x: { type: "spring", stiffness: 80 },
+                  duration: 0.3,
                 }}
               />
             )}

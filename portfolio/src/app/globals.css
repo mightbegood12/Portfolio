@@ -34,6 +34,11 @@ body::-webkit-scrollbar-thumb {
   position: relative;
 }
 
+::selection {
+  background: #ff0000;
+  color: white;
+}
+
 .content h2 {
   color: #fff;
   position: absolute;
@@ -50,6 +55,13 @@ body::-webkit-scrollbar-thumb {
   animation: animate 4s ease-in-out infinite;
 }
 
+.Typewriter {
+  display: flex;
+}
+
+.Typewriter__wrapper {
+  width: 12rem;
+}
 @keyframes animate {
   0%,
   100% {
