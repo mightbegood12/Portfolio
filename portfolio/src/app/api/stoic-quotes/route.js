@@ -1,7 +1,7 @@
 // app/api/anime-quote/route.ts
 export async function GET() {
   try {
-    const response = await fetch("https://animechan.io/api/v1/quotes/random", {
+    const response = await fetch("https://stoic.tekloon.net/stoic-quote", {
       method: "GET",
     });
 

@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react"; // Added useRef
 import { motion } from "framer-motion";
 
 const tabs = [
@@ -11,6 +11,7 @@ const tabs = [
 
 const Navbar = () => {
   const [activeTab, setActiveTab] = useState(tabs[0].id);
+  const timeoutRef = useRef(null); // Added ref for timeout
 
   useEffect(() => {
     const sections = document.querySelectorAll("section");
@@ -22,8 +23,16 @@ const Navbar = () => {
 
     const observerCallback = (entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setActiveTab(entry.target.id);
+        if (entry.isIntersecting && entry.intersectionRatio >= 0.6) {
+          // Clear previous timeout
+          if (timeoutRef.current) {
+            clearTimeout(timeoutRef.current);
+          }
+
+          // Set new timeout with debounce
+          timeoutRef.current = setTimeout(() => {
+            setActiveTab(entry.target.id);
+          }, 200);
         }
       });
     };
@@ -37,6 +46,10 @@ const Navbar = () => {
 
     return () => {
       sections.forEach((section) => observer.unobserve(section));
+      // Clear timeout on unmount
+      if (timeoutRef.current) {
+        clearTimeout(timeoutRef.current);
+      }
     };
   }, []);
 
@@ -44,11 +57,12 @@ const Navbar = () => {
     <div className="mt-5 absolute right-0 left-0">
       <div className="bg-[#721e1e]/30 mix-blend-exclusion max-h-[48px] w-max mx-auto transition-all duration-600 text-[10px] md:text-xs origin-center font-mono font-bold rounded-r-full rounded-l-full md:gap-2 p-2 md:p-4 flex flex-row items-center justify-center">
         {tabs.map((tab) => (
-          <a
+          <button // Changed from <a> to <button>
             key={tab.id}
-            href={`#${tab.id}`}
             onClick={() => {
-              setActiveTab(tab.id);
+              document.getElementById(tab.id)?.scrollIntoView({
+                behavior: "smooth",
+              });
             }}
             className={`${
               activeTab === tab.id
@@ -64,11 +78,11 @@ const Navbar = () => {
                 style={{ borderRadius: 9999 }}
                 transition={{
                   x: { type: "spring", stiffness: 80 },
-                  duration: 0.3,
+                  duration: 0.4,
                 }}
               />
             )}
-          </a>
+          </button>
         ))}
       </div>
     </div>

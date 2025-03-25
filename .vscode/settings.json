@@ -1,0 +1,7 @@
+{
+  "tailwindCSS.emmetCompletions": true,
+  "emmet.optimizeStylesheetParsing": false,
+  "emmet.preferences": {
+    "emmet.includeLanguages": { "javascript": "html" }
+  }
+}
