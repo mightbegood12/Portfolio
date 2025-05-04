@@ -65,7 +65,7 @@ const page = () => {
               />
             </div>
           </div>
-          <div className="h-[50%] w-full overflow-hidden relative  z-20 flex font-sans flex-col items-center justify-center ">
+          <div className="h-[50%] w-full overflow-hidden relative  z-20 flex font-sans flex-col items-center justify-center bg-black">
             {!loading ? (
               <motion.div
                 className="flex flex-col md:flex-row font-mono items-center gap-8 text-pretty text-white justify-center"
@@ -82,7 +82,7 @@ const page = () => {
               >
                 <div className="text-4xl font-sans ">Quote of the day!</div>
                 <div className="w-32 h-[2px] md:w-[2px] md:h-32 bg-slate-400 blur-[1px]" />
-                <blockquote className="text-xl w-[12rem] md:w-[28rem]">
+                <blockquote className="text-xl w-[12rem] md:w-[28rem] text-white">
                   <TextGenerateEffect words={`"${quote.quote}"`} />
                 </blockquote>
                 <motion.div
