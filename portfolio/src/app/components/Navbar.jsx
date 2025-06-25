@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState, useRef } from "react"; // Added useRef
+import { useEffect, useState, useRef } from "react";
 import { motion } from "framer-motion";
 
 const tabs = [
@@ -11,7 +11,7 @@ const tabs = [
 
 const Navbar = () => {
   const [activeTab, setActiveTab] = useState(tabs[0].id);
-  const timeoutRef = useRef(null); // Added ref for timeout
+  const timeoutRef = useRef(null);
 
   useEffect(() => {
     const sections = document.querySelectorAll("section");
@@ -57,11 +57,12 @@ const Navbar = () => {
     <div className="mt-5 absolute right-0 left-0">
       <div className="bg-[#721e1e]/30 mix-blend-exclusion max-h-[48px] w-max mx-auto transition-all duration-600 text-[10px] md:text-xs origin-center font-mono font-bold rounded-r-full rounded-l-full md:gap-2 p-2 md:p-4 flex flex-row items-center justify-center">
         {tabs.map((tab) => (
-          <button // Changed from <a> to <button>
+          <button
             key={tab.id}
             onClick={() => {
               document.getElementById(tab.id)?.scrollIntoView({
                 behavior: "smooth",
+                block: "start",
               });
             }}
             className={`${

@@ -16,7 +16,7 @@ export const TracingBeam = ({ children, className }) => {
 
   // Original path data preserved
   const staticPath =
-    "M -727 -727 V 720 L 740 875 V 1400 L -727 1555 V 2120 L 727 2275 V 2806";
+    "M -727 -727 V 720 L 740 875 V 1400 L -727 1550 V 4226 L 740 4381 V 5008";
 
   useEffect(() => {
     const updateDimensions = () => {
@@ -54,7 +54,7 @@ export const TracingBeam = ({ children, className }) => {
       ref={ref}
       className={cn("relative w-full mx-auto h-full", className)}
     >
-      <div className="absolute top-3 z-[80] w-full lg:block hidden">
+      <div className="absolute top-3 z-40 w-full lg:block hidden">
         <motion.div
           transition={{ duration: 0.2, delay: 0.5 }}
           animate={{
