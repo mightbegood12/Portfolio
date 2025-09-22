@@ -10,7 +10,7 @@ import { TransitionLink } from "@/lib/TransitionLink";
 import SlidngScrollSection from "../components/SlidingScrollSection";
 // let item = gsap.utils.toArray(".item");
 
-const page = () => {
+const Page = () => {
   const [quote, setQuote] = useState({
     author: "Mingyur Rinpoche",
     quote:
@@ -38,6 +38,7 @@ const page = () => {
     <div className="snap-y w-full h-full snap-mandatory">
       <TransitionLink
         href="/"
+        left
         delay={1400}
         className="group rounded-full w-max p-2 text-center m-4 absolute cursor-pointer right-0 z-[99]"
       >
@@ -55,7 +56,7 @@ const page = () => {
               <h2>Magesh</h2>
               <h2>Magesh</h2>
             </div>
-            <div className="z-50 font-normal text-[#ff0000] text-end text-[1rem] md:text-[2rem] lg:text-[3rem] mt-20 ml-[1rem] lg:ml-[12rem] md:mt-36 md:ml-[13rem]">
+            <div className="z-50 will-change-contents font-normal text-[#ff0000] text-end text-[1rem] md:text-[2rem] lg:text-[3rem] mt-20 ml-[1rem] lg:ml-[12rem] md:mt-36 md:ml-[13rem]">
               <Typewriter
                 options={{
                   strings: [
@@ -68,13 +69,13 @@ const page = () => {
                   ],
                   autoStart: true,
                   loop: true,
-                  cursor: "",
-                  delay: 100,
+                  cursor: "|",
+                  delay: "natural",
                 }}
               />
             </div>
           </div>
-          <div className="h-[50%] w-full overflow-hidden relative  z-20 flex font-sans flex-col items-center justify-center bg-black">
+          <div className="h-[50%] w-full overflow-hidden relative z-20 flex font-sans flex-col items-center justify-center bg-black">
             {!loading ? (
               <motion.div
                 className="flex flex-col md:flex-row font-mono items-center gap-4 md:gap-8 text-pretty text-white justify-center"
@@ -150,7 +151,7 @@ const page = () => {
             transition={{ duration: 1, type: "spring" }}
             viewport={{ margin: "60px 0px -60px 0px" }}
           >
-            You are wrong
+            Yet to Implement
           </motion.div>
         </section>
         <SlidngScrollSection id="projects" src="/PROJECTS2.svg" />
@@ -175,10 +176,24 @@ const page = () => {
               className="absolute w-[18rem] md:w-[32rem] lg:w-[52rem] top-6 right-[15px] skew-y-[6deg]"
             ></img>
           </motion.div>
+          <motion.div
+            className="bg-transparent w-full h-full flex items-center text-center justify-center text-white text-xl font-mono"
+            initial={{
+              opacity: 0,
+              translateX: "-20%",
+              scaleX: 0.5,
+              scaleY: 0.6,
+            }}
+            whileInView={{ opacity: 1, translateX: 0, scaleX: 1, scaleY: 1 }}
+            transition={{ duration: 1, type: "spring" }}
+            viewport={{ margin: "60px 0px -60px 0px" }}
+          >
+            Yet to Implement
+          </motion.div>
         </section>
       </TracingBeam>
     </div>
   );
 };
 
-export default page;
+export default Page;

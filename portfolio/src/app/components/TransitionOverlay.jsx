@@ -4,7 +4,7 @@ import { usePageTransition } from "../context/TransitionContext";
 import { AnimatePresence, motion } from "framer-motion";
 
 export const PageTransitionOverlay = () => {
-  const { isPageTransitioning } = usePageTransition();
+  const { isPageTransitioning, direction } = usePageTransition();
   const srcArray = [
     "/shy.svg",
     "/halo.svg",
@@ -14,6 +14,7 @@ export const PageTransitionOverlay = () => {
   ];
   const [currentIndex, setCurrentIndex] = useState(0);
 
+  // Cycle emojis/images while transitioning
   useEffect(() => {
     if (!isPageTransitioning) return;
 
@@ -26,9 +27,15 @@ export const PageTransitionOverlay = () => {
     return () => clearInterval(changeSrc);
   }, [isPageTransitioning]);
 
+  // Reset index each time transition starts
   useEffect(() => {
     if (isPageTransitioning) setCurrentIndex(0);
   }, [isPageTransitioning]);
+
+  // Decide styles based on direction
+  const isLight = direction === "right";
+  const bgColor = isLight ? "bg-white" : "bg-black";
+  const textColor = isLight ? "text-black" : "text-white";
 
   return (
     <AnimatePresence>
@@ -38,11 +45,11 @@ export const PageTransitionOverlay = () => {
           initial={{ opacity: 0, scale: 1.25 }}
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 1.25 }}
-          transition={{ duration: 0.5, ease: "easeInOut" }}
-          className="fixed h-screen inset-0 z-[9999] flex items-center text-center justify-center bg-black text-white text-xl font-sans tracking-wide"
+          transition={{ duration: 0.5, ease: [0.76, 0, 0.24, 1] }}
+          className={`fixed h-screen inset-0 z-[9999] flex items-center text-center justify-center ${bgColor} ${textColor} text-xl font-sans tracking-wide`}
         >
           <div className="animate-pulse p-4">
-            You know what I'm thinking...
+            Don't be afraid to try something <br /> new...
             <motion.img
               key={currentIndex}
               src={srcArray[currentIndex]}
@@ -50,33 +57,9 @@ export const PageTransitionOverlay = () => {
               initial={{ y: 30, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
             />
-            <br /> Nevermind.
           </div>
         </motion.div>
       )}
     </AnimatePresence>
   );
 };
-
-{
-  /* {isPageTransitioning && (
-    <>
-      <motion.div
-        key="page-transition"
-        initial={{ opacity: 0, scale: 1, y: -200 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 1, y: 200 }}
-        transition={{ duration: 0.5, ease: "easeInOut" }}
-        className="fixed h-screen w-1/2 right-1/2 inset-0 z-[9999] flex items-center text-center justify-center bg-blue-400 text-white text-xl font-mono tracking-wide"
-      ></motion.div>
-      <motion.div
-        key="page-transition-2"
-        initial={{ opacity: 0, scale: 1, y: 200 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 1, y: -200 }}
-        transition={{ duration: 1, ease: "easeInOut" }}
-        className="fixed h-screen w-1/2 left-1/2 inset-0 z-[9999] flex items-center text-center justify-center bg-red-500 text-white text-xl font-mono tracking-wide"
-      ></motion.div>
-    </>
-  )} */
-}

@@ -28,7 +28,7 @@ export default function RootLayout({ children }) {
   return (
     <AuroraBackground>
       <div
-        className={`${mohave.variable} ${geistBold.variable} ${geistLight.variable} antialiased scroll-smooth`}
+        className={`${mohave.variable} ${geistBold.variable} ${geistLight.variable} z-10 antialiased scroll-smooth`}
       >
         {children}
       </div>

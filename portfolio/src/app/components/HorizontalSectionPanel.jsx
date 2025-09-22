@@ -13,11 +13,12 @@ const HorizontalSectionPanel = ({
   nodejs,
   hyperbrowser,
   express,
+  supabase,
 }) => {
   return (
     <div className="horizontal-panel bg-transparent flex items-center text-center justify-center text-white text-xl tracking-wide ">
       <div className="h-[80%] w-[80%] font-mono flex flex-row justify-around items-center rounded-lg m-2">
-        <div className="flex flex-col rounded-lg p-4 object-center items-center justify-center gap-4 w-[40%]">
+        <div className="flex flex-col rounded-lg p-4 object-center items-center justify-center gap-4 w-[40%] transition-all duration-200 ease-in-out">
           <img
             src={src}
             alt={title + subtitle}
@@ -26,13 +27,16 @@ const HorizontalSectionPanel = ({
           <a
             href={href}
             target="_blank"
-            className="text-[#ff0000] font-sans group cursor-pointer transition-all bg-[#721e1e]/10 px-4 py-2 hover:bg-[#721e1e]/40 rounded-full  select-text z-[99]"
+            className="group text-[#ff0000] font-sans cursor-pointer bg-[#721e1e]/10 px-4 py-2 rounded-full select-text z-[99] 
+             transition-all duration-300 ease-in-out hover:bg-[#721e1e]/40"
           >
             {title} <span className="text-white font-mono"> - {subtitle}</span>
             <img
               src="./out.png"
-              className="w-4 h-4 group-hover:inline-block hidden mx-2"
-            ></img>
+              className="w-4 h-4 opacity-0 translate-x-[-6px] transition-all duration-300 ease-in-out 
+               group-hover:opacity-100 group-hover:translate-x-0 inline-block mx-2"
+              alt="out"
+            />
           </a>
         </div>
         <div className="w-[2px] h-80 bg-white/20"></div>
@@ -49,6 +53,9 @@ const HorizontalSectionPanel = ({
             )}
             {express && <ProjectBuildItem src="./express.png" text="Express" />}
             {nodejs && <ProjectBuildItem src="./nodejs.png" text="Node js" />}
+            {supabase && (
+              <ProjectBuildItem src="./supabase.png" text="Supabase" />
+            )}
           </div>
           <div className="text-lg text-center w-[400px]">{content}</div>
         </div>

@@ -1,7 +1,7 @@
 import React from "react";
 
-const page = () => {
-  return <div className="z-30 text-xl font-geistL ">Light Mode</div>;
+const Page = () => {
+  return <div className="text-xl font-geistL ">Yet to Implement</div>;
 };
 
-export default page;
+export default Page;

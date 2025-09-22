@@ -96,44 +96,11 @@ body::-webkit-scrollbar-thumb {
   }
 }
 
-#dark-mode {
-  clip-path: polygon(
-    41% 0,
-    100% 0,
-    100% 40%,
-    100% 85%,
-    100% 100%,
-    43% 100%,
-    58% 79%,
-    34% 54%,
-    57% 29%
-  );
-}
-
-#light-mode {
-  clip-path: polygon(
-    41% 0,
-    0 0,
-    0 42%,
-    0 83%,
-    0 100%,
-    43% 100%,
-    58% 79%,
-    34% 54%,
-    57% 29%
-  );
-}
-.glow-bg {
-  background: linear-gradient(
-    var(--angle),
-    hsl(41.6 100% 50%),
-    hsl(60 100% 50%)
-  );
-}
-
 .horizontal-panel {
   flex: 1 0 100%;
 }
+
+/* Keyframes */
 
 @keyframes aurora {
   from {

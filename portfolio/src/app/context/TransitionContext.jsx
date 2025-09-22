@@ -8,10 +8,16 @@ const TransitionContext = createContext({
 
 export const TransitionProvider = ({ children }) => {
   const [isPageTransitioning, setIsPageTransitioning] = useState(false);
+  const [direction, setDirection] = useState("");
 
   return (
     <TransitionContext.Provider
-      value={{ isPageTransitioning, setIsPageTransitioning }}
+      value={{
+        isPageTransitioning,
+        direction,
+        setIsPageTransitioning,
+        setDirection,
+      }}
     >
       {children}
     </TransitionContext.Provider>

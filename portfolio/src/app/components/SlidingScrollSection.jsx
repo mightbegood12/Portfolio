@@ -89,20 +89,19 @@ experience"
           express
         />
         <HorizontalSectionPanel
-          src="fresh-mart-demo.gif"
-          title="Fresh Mart"
-          subtitle="E-grocery Web App"
-          href="https://freshmart-tau.vercel.app/"
-          content="Fresh Mart is a comprehensive grocery web application built
-                using the MERN stack (MongoDB, Express.js, React.js, Node.js).
-                It is designed to revolutionize the online grocery shopping
-                experience by combining modern technology with user-centric
-                features."
+          src="enotes-app.png"
+          title="eNotes"
+          subtitle="Apple like notes in web"
+          href="https://enotes-app.vercel.app"
+          content="eNotes is a modern note-taking web application built using React,
+           Vite, Tailwind CSS, and Supabase (PostgreSQL). It is designed to streamline 
+           personal productivity by combining a rich text and Markdown editor with 
+           real-time data synchronization, secure authentication, and an intuitive, 
+           user-friendly interface."
           react
-          vite
           tailwind
           nodejs
-          express
+          supabase
         />
       </section>
     </>

@@ -8,9 +8,9 @@ function sleep(ms) {
   });
 }
 
-export const TransitionLink = ({ href, delay, children, ...props }) => {
+export const TransitionLink = ({ href, delay, children, left, ...props }) => {
   const router = useRouter();
-  const { setIsPageTransitioning } = usePageTransition();
+  const { setIsPageTransitioning, setDirection } = usePageTransition();
 
   const handleTransitions = async (e) => {
     e.preventDefault();
@@ -18,6 +18,11 @@ export const TransitionLink = ({ href, delay, children, ...props }) => {
     // body?.classList.add("page-transition");
     console.log("starting Transition");
     setIsPageTransitioning(true);
+    if (left) {
+      setDirection("left");
+    } else {
+      setDirection("right");
+    }
     await sleep(delay);
     router.push(href);
     await sleep(delay);
