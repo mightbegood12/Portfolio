@@ -16,7 +16,7 @@ export const TracingBeam = ({ children, className }) => {
 
   // Original path data preserved
   const staticPath =
-    "M -727 -727 V 720 L 740 875 V 1400 L -727 1550 V 4226 L 740 4381 V 5008";
+    "M -727 -727 V 720 L 740 875 V 1400 L -727 1550 V 4226 L 740 4381 V 5500";
 
   useEffect(() => {
     const updateDimensions = () => {
@@ -64,7 +64,10 @@ export const TracingBeam = ({ children, className }) => {
                 : "rgba(200, 0, 0, 200) 0px 3px 8px",
           }}
           className="ml-[27px] h-4 w-4 rounded-full border bg-red-600 border-red-600 shadow-sm flex items-center justify-center"
-        ></motion.div>
+        >
+          <div className="h-2 w-2 rounded-full border border-neutral-300 bg-white" />
+        </motion.div>
+
         <svg
           viewBox={viewBox}
           preserveAspectRatio="xMidYMid meet"

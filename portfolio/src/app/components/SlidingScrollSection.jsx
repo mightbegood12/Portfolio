@@ -60,8 +60,9 @@ export default function SlidngScroll({ id, src }) {
         <HorizontalSectionPanel
           src="cine-rush-demo.gif"
           title="CineRush"
-          subtitle="AI Agent for Movie Ticket Booking"
+          subtitle="AI agent for Movie Ticket Booking"
           href="https://cine-rush.vercel.app/"
+          github="https://github.com/mightbegood12/cineRush"
           content="CineRush is an AI-powered movie ticket booking platform designed to
 streamline and modernize the reservation process. Unlike traditional systems that
 require manual filtering and multiple steps, CineRush leverages natural language
@@ -75,7 +76,8 @@ experience"
         <HorizontalSectionPanel
           src="fresh-mart-demo.gif"
           title="Fresh Mart"
-          subtitle="E-grocery Web App"
+          subtitle="eGrocery web app"
+          github="https://github.com/mightbegood12/Fresh_Mart"
           href="https://freshmart-tau.vercel.app/"
           content="Fresh Mart is a comprehensive grocery web application built
                 using the MERN stack (MongoDB, Express.js, React.js, Node.js).
@@ -86,12 +88,13 @@ experience"
           vite
           tailwind
           nodejs
-          express
+          // express
         />
         <HorizontalSectionPanel
           src="enotes-app.png"
           title="eNotes"
           subtitle="Apple like notes in web"
+          github="https://github.com/mightbegood12/eNotes-app"
           href="https://enotes-app.vercel.app"
           content="eNotes is a modern note-taking web application built using React,
            Vite, Tailwind CSS, and Supabase (PostgreSQL). It is designed to streamline 

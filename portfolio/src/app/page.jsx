@@ -68,7 +68,7 @@ const Page = () => {
             setDirection("right");
             await sleep(500);
             router.push("/light");
-            await sleep(500);
+            await sleep(1200);
             setIsPageTransitioning(false);
           } else {
             // Animate back to center

@@ -1,10 +1,10 @@
 "use client";
 import { useCallback, useEffect, useState } from "react";
-import { Boxes } from "@/app/components/Boxes";
+// import { Boxes } from "@/app/components/Boxes";
 import Typewriter from "typewriter-effect";
 import { TracingBeam } from "@/app/components/TracingBeam";
 import { motion } from "framer-motion";
-import { ScaleLoader } from "react-spinners";
+// import { ScaleLoader } from "react-spinners";
 import { TextGenerateEffect } from "@/app/components/TextGenerateEffect";
 import { TransitionLink } from "@/lib/TransitionLink";
 import SlidngScrollSection from "../components/SlidingScrollSection";
@@ -51,7 +51,7 @@ const Page = () => {
         <section id="hero" className="h-screen snap-always snap-center w-full">
           <div className="h-[50%] w-full overflow-hidden relative flex bg-black font-sans flex-col items-center">
             <div className="absolute inset-0 w-full h-full bg-black z-30 [mask-image:radial-gradient(transparent,white)] pointer-events-none" />
-            <Boxes />
+            {/* <Boxes /> */}
             <div className="select-none content text-[4rem] md:text-[8rem] mt-40 md:mt-20 z-30">
               <h2>Magesh</h2>
               <h2>Magesh</h2>
@@ -59,14 +59,7 @@ const Page = () => {
             <div className="z-50 will-change-contents font-normal text-[#ff0000] text-end text-[1rem] md:text-[2rem] lg:text-[3rem] mt-20 ml-[1rem] lg:ml-[12rem] md:mt-36 md:ml-[13rem]">
               <Typewriter
                 options={{
-                  strings: [
-                    "WEBDEV",
-                    "ARTIST",
-                    "BUILDING",
-                    "CRAZY",
-                    "STUFF",
-                    "??????",
-                  ],
+                  strings: ["WEBDEV", "GAMER", "LURKING", "SIKE", "??????"],
                   autoStart: true,
                   loop: true,
                   cursor: "|",
@@ -114,7 +107,21 @@ const Page = () => {
                 </motion.div>
               </motion.div>
             ) : (
-              <ScaleLoader color="#ffffff" height={35} radius={20} />
+              <div className="flex flex-col md:flex-row font-mono items-center gap-4 md:gap-8 text-pretty text-white justify-center">
+                <div className="text-xl md:text-4xl font-sans ">
+                  Quote of the day!
+                </div>
+                <div className="w-32 h-[2px] md:w-[2px] md:h-32 bg-slate-400 blur-[1px]" />
+                <blockquote className="text-sm md:text-xl w-[12rem] md:w-[28rem] text-white flex flex-col gap-2">
+                  <div className="animate-pulse w-full h-4 bg-white/40 rounded-lg"></div>
+                  <div className="animate-pulse w-96 h-4 bg-white/40 rounded-lg"></div>
+                  <div className="animate-pulse w-24 h-4 bg-white/40 rounded-lg"></div>
+                </blockquote>
+                <div className="self-end mb-4 ">
+                  {/* - {quote.author ? quote.author : "Anonymous"} */}{" "}
+                  <div className="animate-pulse w-24 h-4 bg-white/40 rounded-lg"></div>
+                </div>
+              </div>
             )}
           </div>
         </section>
@@ -189,6 +196,28 @@ const Page = () => {
             viewport={{ margin: "60px 0px -60px 0px" }}
           >
             Yet to Implement
+          </motion.div>
+        </section>
+        <section
+          id="footer"
+          className="h-[20vh] snap-always snap-center bg-transparent relative z-40"
+        >
+          <motion.div
+            className="bg-transparent leading-5 w-full h-full flex items-end text-center justify-center text-white/40 text-sm font-mono font-thin"
+            initial={{
+              opacity: 0,
+              translateY: "40%",
+            }}
+            whileInView={{ opacity: 1, translateY: 0 }}
+            transition={{ duration: 1, type: "spring" }}
+            viewport={{ margin: "60px 0px -60px 0px" }}
+          >
+            <div className="flex flex-row gap-2 h-24 justify-center items-center">
+              Made with
+              <img src="./nextjs.svg" className="w-6 opacity-80" />
+              {"  "} &
+              <img src="./gsap.svg" className="w-12 opacity-80" />
+            </div>
           </motion.div>
         </section>
       </TracingBeam>

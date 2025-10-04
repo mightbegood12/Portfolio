@@ -26,6 +26,15 @@ export default {
         geistL: ["var(--font-geistL)"],
         geistB: ["var(--font-geistB)"],
       },
+      animation: {
+        shine: "shine 2s ease-in-out infinite", // Adjust duration and timing function as needed
+      },
+      keyframes: {
+        shine: {
+          "0%": { transform: "translateX(-800%) skewX(-12deg)" }, // Starting position
+          "100%": { transform: "translateX(500%) skewX(-12deg)" }, // Ending position (adjust as needed)
+        },
+      },
     },
   },
   plugins: [addVariablesForColors],
