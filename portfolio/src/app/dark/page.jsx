@@ -35,14 +35,14 @@ const Page = () => {
     fetchQuote();
   }, []);
   return (
-    <div className="snap-y w-full h-full snap-mandatory">
+    <div className="snap-y w-full h-full snap-mandatory overflow-hidden">
       <TransitionLink
         href="/"
         left
         delay={1400}
-        className="group rounded-full w-max p-2 text-center m-4 absolute cursor-pointer right-0 z-[99]"
+        className="group rounded-full w-max p-2 text-center m-2 md:m-4 fixed bottom-8 md:top-0 bg-white/40 md:bg-transparent right-8 md:absolute cursor-pointer md:right-0 z-[99]"
       >
-        <img src="/SWITCH_THEME.svg" className="w-6 h-6"></img>
+        <img src="/SWITCH_THEME.svg" className="h-4 w-4 md:w-6 md:h-6"></img>
         <div className="group-hover:opacity-100 opacity-0 transition-all absolute w-max -translate-x-24 font-sans text-white bg-gray-600/40 px-4 py-2 rounded-lg">
           Switch Theme
         </div>
@@ -197,13 +197,8 @@ const Page = () => {
           >
             Yet to Implement
           </motion.div>
-        </section>
-        <section
-          id="footer"
-          className="h-[20vh] snap-always snap-center bg-transparent relative z-40"
-        >
           <motion.div
-            className="bg-transparent leading-5 w-full h-full flex items-end text-center justify-center text-white/40 text-sm font-mono font-thin"
+            className="bg-transparent leading-5 w-full h-40 absolute bottom-8 flex items-end text-center justify-center text-white/40 text-sm font-mono font-thin"
             initial={{
               opacity: 0,
               translateY: "40%",
@@ -212,7 +207,7 @@ const Page = () => {
             transition={{ duration: 1, type: "spring" }}
             viewport={{ margin: "60px 0px -60px 0px" }}
           >
-            <div className="flex flex-row gap-2 h-24 justify-center items-center">
+            <div className="flex flex-row gap-2 h-full justify-center items-end">
               Made with
               <img src="./nextjs.svg" className="w-6 opacity-80" />
               {"  "} &

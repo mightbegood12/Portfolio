@@ -14,12 +14,14 @@ function sleep(ms) {
 const Page = () => {
   const circleRef = useRef(null);
   const containerRef = useRef(null);
-  const wrapperRef = useRef(null); // wrapper for dynamic background
+  const leftPanelRef = useRef(null);
+  const rightPanelRef = useRef(null);
+
   const router = useRouter();
   const { setIsPageTransitioning, setDirection } = usePageTransition();
 
   useEffect(() => {
-    if (circleRef.current && containerRef.current && wrapperRef.current) {
+    if (circleRef.current && containerRef.current) {
       const container = containerRef.current.getBoundingClientRect();
       const circle = circleRef.current.getBoundingClientRect();
       const padding = 20;
@@ -32,21 +34,13 @@ const Page = () => {
         },
         inertia: true,
         onDrag: function () {
-          // progress between 0 and 1
           const progress =
             (this.x - padding) / (container.width - circle.width - padding * 2);
-
-          // clamp between 0–1
           const clamped = Math.min(Math.max(progress, 0), 1);
 
-          // gradient shift based on progress
-          const stop = Math.round(clamped * 100);
-
-          wrapperRef.current.style.background = `linear-gradient(
-            90deg,
-            rgba(255,255,255,1) ${stop}%,
-            rgba(0,0,0,1) ${stop}%
-          )`;
+          // Panels resize based on progress
+          gsap.set(leftPanelRef.current, { width: `${(1 - clamped) * 100}%` });
+          gsap.set(rightPanelRef.current, { width: `${clamped * 100}%` });
         },
         onRelease: async function () {
           const x = this.x;
@@ -55,7 +49,6 @@ const Page = () => {
           const rightThreshold = container.width - circle.width - padding - 10;
 
           if (x < leftThreshold) {
-            // transition to dark (Left Side)
             setIsPageTransitioning(true);
             setDirection("left");
             await sleep(500);
@@ -63,7 +56,6 @@ const Page = () => {
             await sleep(1400);
             setIsPageTransitioning(false);
           } else if (x >= rightThreshold) {
-            // transition to light (Right Side)
             setIsPageTransitioning(true);
             setDirection("right");
             await sleep(500);
@@ -71,34 +63,32 @@ const Page = () => {
             await sleep(1200);
             setIsPageTransitioning(false);
           } else {
-            // Animate back to center
+            // Snap back to center
             gsap.to(circleRef.current, {
               x: center,
               duration: 0.4,
               ease: "power2.out",
             });
-
-            // Reset gradient to center
-            wrapperRef.current.style.background = `linear-gradient(
-              90deg,
-              rgba(255,255,255,1) 50%,
-              rgba(0,0,0,1) 50%
-            )`;
+            gsap.to(leftPanelRef.current, {
+              width: "50%",
+              duration: 0.3,
+              ease: "power2.out",
+            });
+            gsap.to(rightPanelRef.current, {
+              width: "50%",
+              duration: 0.3,
+              ease: "power2.out",
+            });
           }
         },
       });
 
-      // Set circle at center initially
+      // initial setup
       gsap.set(circleRef.current, {
         x: (container.width - circle.width) / 2,
       });
-
-      // Initial gradient center
-      wrapperRef.current.style.background = `linear-gradient(
-        90deg,
-        rgba(255,255,255,1) 50%,
-        rgba(0,0,0,1) 50%
-      )`;
+      gsap.set(leftPanelRef.current, { width: "50%" });
+      gsap.set(rightPanelRef.current, { width: "50%" });
 
       return () => {
         draggable[0].kill();
@@ -107,13 +97,31 @@ const Page = () => {
   }, [router, setIsPageTransitioning, setDirection]);
 
   return (
-    <div
-      ref={wrapperRef}
-      className="mix-blend-difference font-geistB overflow-hidden h-screen flex flex-row items-center justify-center transition-colors duration-300"
-    >
+    <div className="relative font-geistB overflow-hidden h-screen flex items-center justify-center">
+      {/* LEFT (LIGHT) */}
+      <div
+        ref={rightPanelRef}
+        className="absolute left-0 top-0 h-full bg-white flex items-center justify-center overflow-hidden"
+      >
+        <span className="text-[500px] font-bold text-black select-none">
+          LIGHT
+        </span>
+      </div>
+
+      {/* RIGHT (DARK) */}
+      <div
+        ref={leftPanelRef}
+        className="absolute right-0 top-0 h-full bg-black flex items-center justify-center overflow-hidden"
+      >
+        <span className="text-[500px] font-bold text-white select-none relative">
+          DARK
+        </span>
+      </div>
+
+      {/* Switch Container */}
       <div
         ref={containerRef}
-        className="switch-container w-[40%] h-40 rounded-full bg-gray-400 relative"
+        className="switch-container w-[40%] h-40 rounded-full bg-gray-400/20 relative z-10"
       >
         <div
           ref={circleRef}
