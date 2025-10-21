@@ -1,5 +1,5 @@
 "use client";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import gsap from "gsap";
 import { Draggable } from "gsap/Draggable";
@@ -16,6 +16,9 @@ const Page = () => {
   const containerRef = useRef(null);
   const leftPanelRef = useRef(null);
   const rightPanelRef = useRef(null);
+  const rightPanelTextRef = useRef("400px");
+  const leftPanelTextRef = useRef("400px");
+  const [progress, setProgress] = useState();
 
   const router = useRouter();
   const { setIsPageTransitioning, setDirection } = usePageTransition();
@@ -37,10 +40,21 @@ const Page = () => {
           const progress =
             (this.x - padding) / (container.width - circle.width - padding * 2);
           const clamped = Math.min(Math.max(progress, 0), 1);
+          const size1 = Math.min(Math.max(clamped * 1000, 600), 760);
+          const size2 = Math.min(Math.max(clamped * 1000, 350), 400);
 
           // Panels resize based on progress
           gsap.set(leftPanelRef.current, { width: `${(1 - clamped) * 100}%` });
+          gsap.set(leftPanelTextRef.current, {
+            fontSize: `${size2}px`,
+            ease: "bounce.inOut",
+          });
           gsap.set(rightPanelRef.current, { width: `${clamped * 100}%` });
+          gsap.set(rightPanelTextRef.current, {
+            fontSize: `${1000 - size1}px`,
+            ease: "bounce.inOut",
+          });
+          setProgress(`${size2} size, ${clamped} clamped`);
         },
         onRelease: async function () {
           const x = this.x;
@@ -79,6 +93,17 @@ const Page = () => {
               duration: 0.3,
               ease: "power2.out",
             });
+            gsap.set(rightPanelTextRef.current, {
+              fontSize: `400px`,
+              duration: 0.3,
+              ease: "power2.out",
+            });
+            gsap.set(leftPanelTextRef.current, {
+              fontSize: `400px`,
+              duration: 0.3,
+              ease: "power2.out",
+            });
+            setProgress(400);
           }
         },
       });
@@ -103,8 +128,11 @@ const Page = () => {
         ref={rightPanelRef}
         className="absolute left-0 top-0 h-full bg-white flex items-center justify-center overflow-hidden"
       >
-        <span className="text-[500px] font-bold text-black select-none">
-          LIGHT
+        <span
+          className="text-[400px] font-bold text-black select-none"
+          ref={rightPanelTextRef}
+        >
+          PROFESSION
         </span>
       </div>
 
@@ -113,8 +141,11 @@ const Page = () => {
         ref={leftPanelRef}
         className="absolute right-0 top-0 h-full bg-black flex items-center justify-center overflow-hidden"
       >
-        <span className="text-[500px] font-bold text-white select-none relative">
-          DARK
+        <span
+          className="text-[400px] font-bold text-white select-none relative"
+          ref={leftPanelTextRef}
+        >
+          PASSION
         </span>
       </div>
 
@@ -128,6 +159,7 @@ const Page = () => {
           className="circle rounded-full h-36 w-36 bg-white absolute top-2"
         ></div>
       </div>
+      <div className="text-black absolute top-24 left-0 z-50">{progress}</div>
     </div>
   );
 };

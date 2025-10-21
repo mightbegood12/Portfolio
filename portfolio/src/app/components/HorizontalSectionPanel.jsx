@@ -18,7 +18,7 @@ const HorizontalSectionPanel = ({
 }) => {
   return (
     <div className="horizontal-panel bg-transparent flex items-center text-center justify-center text-white text-xl tracking-wide ">
-      <div className="md:h-[80%] md:w-[80%] font-mono flex flex-col md:flex-row justify-around items-center rounded-lg m-2">
+      <div className="md:h-[80%] md:w-[80%] w-[80%] font-mono flex flex-col md:flex-row justify-around items-center rounded-lg m-2">
         {/* Image Section */}
         <div className="group flex flex-col rounded-lg p-4 object-center items-center justify-center gap-4 md:w-[40%] transition-all duration-200 ease-in-out">
           <div>
@@ -28,12 +28,12 @@ const HorizontalSectionPanel = ({
               className="rounded-lg object-cover transition-all duration-300"
             />
             <div
-              className="group-hover:opacity-100 opacity-0 absolute text-lg w-max font-mono py-2 rounded-lg select-none
-             transition-all duration-300 ease-in-out translate-x-[-6px] group-hover:translate-x-0 mt-2"
+              className="md:group-hover:opacity-100 md:opacity-0 absolute text-lg md:w-max font-mono py-2 rounded-lg select-none
+             transition-all duration-300 ease-in-out translate-x-[-6px] group-hover:translate-x-0 md:mt-2 -mt-48"
             >
-              <div className="truncate leading-6">
+              <div className="truncate text-left md:text-center leading-6 w-max">
                 {title}{" "}
-                <span className="text-white font-mono text-sm">
+                <span className="text-white md:inline block font-mono text-sm">
                   {" "}
                   | {subtitle}
                 </span>
@@ -53,10 +53,10 @@ const HorizontalSectionPanel = ({
             </a>
           </div>
         </div>
-        <div className="w-96 h-[2px] md:w-[2px] md:h-96 bg-white/20"></div>
+        <div className="w-full h-[2px] md:w-[2px] md:h-96 bg-white/20"></div>
         {/* Tech Stack */}
-        <div className="flex flex-col gap-4 p-2 justify-center items-center">
-          <div className="h-full flex gap-2 justify-start items-center m-4">
+        <div className="flex flex-col w-full md:w-[50%] gap-4 p-2 justify-center items-center">
+          <div className="flex h-full gap-2 justify-start items-center m-4">
             {hyperbrowser && (
               <ProjectBuildItem src="./hyperbrowser.svg" text="HyperBrowser" />
             )}
@@ -71,7 +71,7 @@ const HorizontalSectionPanel = ({
               <ProjectBuildItem src="./supabase.png" text="Supabase" />
             )}
           </div>
-          <div className="text-sm w-20 md:text-lg md:w-[400px] text-justify indent-6">
+          <div className="md:block hidden text-sm w-20 md:text-lg md:w-[400px] text-justify indent-6">
             {content}
           </div>
         </div>

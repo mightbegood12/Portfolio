@@ -54,11 +54,11 @@ export default function SlidngScroll({ id, src }) {
         >
           <img
             src={src}
-            className=" w-[18rem] md:w-[32rem] lg:w-[52rem] -skew-y-[6deg]"
+            className=" w-[18rem] md:mt-0 mt-12 md:w-[32rem] lg:w-[52rem] -skew-y-[6deg]"
           ></img>
         </motion.div>
         <HorizontalSectionPanel
-          src="cine-rush-demo.gif"
+          src="cine-rush-demo-cropped.gif"
           title="CineRush"
           subtitle="AI agent for Movie Ticket Booking"
           href="https://cine-rush.vercel.app/"

@@ -114,7 +114,7 @@ const Page = () => {
                 <div className="w-32 h-[2px] md:w-[2px] md:h-32 bg-slate-400 blur-[1px]" />
                 <blockquote className="text-sm md:text-xl w-[12rem] md:w-[28rem] text-white flex flex-col gap-2">
                   <div className="animate-pulse w-full h-4 bg-white/40 rounded-lg"></div>
-                  <div className="animate-pulse w-96 h-4 bg-white/40 rounded-lg"></div>
+                  <div className="animate-pulse w-40 md:w-96 h-4 bg-white/40 rounded-lg"></div>
                   <div className="animate-pulse w-24 h-4 bg-white/40 rounded-lg"></div>
                 </blockquote>
                 <div className="self-end mb-4 ">
@@ -143,7 +143,7 @@ const Page = () => {
           >
             <img
               src="/ABOUT2.svg"
-              className="w-[18rem] md:w-[32rem] lg:w-[48rem]  skew-y-[6deg]"
+              className="w-[18rem] md:mt-0 mt-12 md:w-[32rem] lg:w-[48rem]  skew-y-[6deg]"
             ></img>
           </motion.div>
           <motion.div
@@ -180,7 +180,7 @@ const Page = () => {
           >
             <img
               src="/CONTACT2.svg"
-              className="absolute w-[18rem] md:w-[32rem] lg:w-[52rem] top-6 right-[15px] skew-y-[6deg]"
+              className="absolute md:mt-0 mt-12 w-[18rem] md:w-[32rem] lg:w-[52rem] top-6 right-[15px] skew-y-[6deg]"
             ></img>
           </motion.div>
           <motion.div

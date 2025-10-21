@@ -10,7 +10,7 @@ const ProjectBuildItem = ({ src, text }) => {
           className="w-6 h-6 object-cover bg-transparent rounded-full p-[2px] text-center"
           alt={text}
         />
-        <div className="text-white text-xs my-auto">{text}</div>
+        <div className="md:block hidden text-white text-xs my-auto">{text}</div>
       </div>
     </>
   );
