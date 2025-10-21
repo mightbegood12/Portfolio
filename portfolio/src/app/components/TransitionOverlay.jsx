@@ -48,8 +48,12 @@ export const PageTransitionOverlay = () => {
           transition={{ duration: 0.5, ease: [0.76, 0, 0.24, 1] }}
           className={`fixed h-screen inset-0 z-[9999] flex items-center text-center justify-center ${bgColor} ${textColor} text-xl font-sans tracking-wide`}
         >
-          <div className="animate-pulse p-4">
-            Don't be afraid to try something <br /> new...
+          <div className="animate-pulse p-4 flex gap-4 leading-[3rem]">
+            {direction === "right" ? (
+              <>Think only about your art...</>
+            ) : (
+              <>Don't be afraid to try something new...</>
+            )}
             <motion.img
               key={currentIndex}
               src={srcArray[currentIndex]}
